@@ -36,7 +36,7 @@ export default function Hero() {
             One stop for all
             <br />
             <Text as={"span"} color={"#54bfd7"}>
-              things Complience
+              things Compliance
             </Text>
           </Heading>
           <Text color={"gray.500"}>
