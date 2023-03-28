@@ -8,6 +8,7 @@ import Navbar from '../Navbar/Navbar'
 function Homepage() {
   return (
     <React.Fragment>
+    
      <Navbar/>
      <Hero/>
      <Features/>

@@ -9,9 +9,27 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  useDisclosure,
 } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import AboutUs from "../AboutUs/AboutUs";
 
 export default function Hero() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showMore, setShowMore] = useState(false);
+
+  const showMoreAction = () => {
+    setShowMore(true);
+  };
   return (
     <>
       {/* <Head>
@@ -21,7 +39,10 @@ export default function Hero() {
         />
       </Head> */}
 
-      <Container maxW={"3xl"}>
+      <Container
+        maxW={"10xl"}
+        backgroundImage="url('https://img.freepik.com/free-vector/white-background-with-triangle-patterns_1017-18410.jpg?w=2000&t=st=1673160433~exp=1673161033~hmac=0e13602dc930484a3bde5c47a5eb8581a530a4664c08f77b9d978f9b38d1ea92')"
+      >
         <Stack
           as={Box}
           textAlign={"center"}
@@ -33,17 +54,40 @@ export default function Hero() {
             fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}
           >
-            One stop for all
+            <marquee>Platform for all matters on Corporate Compliance</marquee>
+
             <br />
-            <Text as={"span"} color={"#54bfd7"}>
-              things Compliance
-            </Text>
+            <Text as={"span"} color={"#54bfd7"}></Text>
           </Heading>
           <Text color={"gray.500"}>
-            Helper text come here with the changes Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Doloremque voluptates eligendi, rerum
-            molestiae nesciunt quidem.
+            As per the Companies Act, 2013, the Board of Directors of a company
+            are supposed to act in good faith in order to promote the objects of
+            the company for the benefit of its stakeholders. Directors also have
+            a certain degree of responsibility for the operations of the
+            company. Regulatory filings of Indian companies are typically
+            prepared and made under the authority of the KMPs; and a degree of
+            responsibility is ascribed to the officers of the company in the
+            event of inaccurate reporting. Further, liability resulting from
+            non-compliance with obligations under the ESG framework is also
+            attributable to officers of the company.
           </Text>
+
+          <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'inside'}>
+            <ModalOverlay />
+            <ModalContent maxW={'5xl'}>
+              <ModalCloseButton />
+              <ModalBody>
+                <AboutUs />
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+          {showMore}
           <Stack
             direction={"column"}
             spacing={3}
@@ -52,6 +96,7 @@ export default function Hero() {
             position={"relative"}
           >
             <Button
+              onClick={onOpen}
               colorScheme={"green"}
               bg={"#54bfd7"}
               rounded={"full"}
@@ -60,7 +105,7 @@ export default function Hero() {
                 bg: "#346d7a",
               }}
             >
-              Know More
+              Read More
             </Button>
           </Stack>
         </Stack>
