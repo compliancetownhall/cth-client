@@ -64,8 +64,9 @@ import CSR from '../CSR/CSR';
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-              fontFamily={'heading'}
-              color={useColorModeValue('gray.800', 'white')}>
+              fontSize={"xl"}
+              fontWeight="bold"
+              color={useColorModeValue('black.800', 'white')}>
               Compliance Townhall
             </Text>
   
@@ -110,8 +111,8 @@ import CSR from '../CSR/CSR';
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
+    const linkColor = useColorModeValue('black.600', 'black.600');
+    const linkHoverColor = useColorModeValue('black.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -137,8 +138,8 @@ import CSR from '../CSR/CSR';
                   p={2}
                   onClick={onOpen}
                   href={navItem.href ?? '#'}
-                  fontSize={'sm'}
-                  fontWeight={500}
+                  fontSize={'xl'}
+                  fontWeight={"bold"}
                   color={linkColor}
                   _hover={{
                     textDecoration: 'none',
@@ -216,7 +217,7 @@ import CSR from '../CSR/CSR';
           }}>
           <Text
             fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
+            color={useColorModeValue('black.600', 'black.200')}>
             {label}
           </Text>
           {children && (

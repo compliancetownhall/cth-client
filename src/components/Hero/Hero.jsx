@@ -59,7 +59,7 @@ export default function Hero() {
             <br />
             <Text as={"span"} color={"#54bfd7"}></Text>
           </Heading>
-          <Text color={"gray.500"}>
+          <Text as={"h2"} fontWeight={600} fontSize={ {base: "sm", sm: "xl", md: "2xl"} }>
             As per the Companies Act, 2013, the Board of Directors of a company
             are supposed to act in good faith in order to promote the objects of
             the company for the benefit of its stakeholders. Directors also have
