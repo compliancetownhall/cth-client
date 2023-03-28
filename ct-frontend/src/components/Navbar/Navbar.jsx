@@ -16,14 +16,25 @@ import {
     useDisclosure,
   } from '@chakra-ui/react';
   import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+  } from "@chakra-ui/react";
+  import {
     HamburgerIcon,
     CloseIcon,
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@chakra-ui/icons';
+import CSR from '../CSR/CSR';
   
   export default function Navbar() {
     const { isOpen, onToggle } = useDisclosure();
+    
   
     return (
       <Box>
@@ -102,15 +113,29 @@ import {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-  
+    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
       <Stack direction={'row'} spacing={4}>
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
-            <Popover trigger={'hover'} placement={'bottom-start'}>
-              <PopoverTrigger>
+            <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'inside'}>
+            <ModalOverlay />
+            <ModalContent maxW={'5xl'}>
+              <ModalCloseButton />
+              <ModalBody>
+                <CSR />
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
                 <Link
                   p={2}
+                  onClick={onOpen}
                   href={navItem.href ?? '#'}
                   fontSize={'sm'}
                   fontWeight={500}
@@ -121,24 +146,7 @@ import {
                   }}>
                   {navItem.label}
                 </Link>
-              </PopoverTrigger>
-  
-              {navItem.children && (
-                <PopoverContent
-                  border={0}
-                  boxShadow={'xl'}
-                  bg={popoverContentBgColor}
-                  p={4}
-                  rounded={'xl'}
-                  minW={'sm'}>
-                  <Stack>
-                    {navItem.children.map((child) => (
-                      <DesktopSubNav key={child.label} {...child} />
-                    ))}
-                  </Stack>
-                </PopoverContent>
-              )}
-            </Popover>
+              
           </Box>
         ))}
       </Stack>
@@ -193,7 +201,7 @@ import {
   };
   
   const MobileNavItem = ({ label, children, href }) => {
-    const { isOpen, onToggle } = useDisclosure();
+    const { isOpen, onOpen, onToggle, onClose } = useDisclosure();
   
     return (
       <Stack spacing={4} onClick={children && onToggle}>
@@ -221,7 +229,21 @@ import {
             />
           )}
         </Flex>
-  
+        <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'inside'}>
+            <ModalOverlay />
+            <ModalContent maxW={'5xl'}>
+              <ModalCloseButton />
+              <ModalBody>
+                <CSR />
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
           <Stack
             mt={2}
@@ -232,7 +254,7 @@ import {
             align={'start'}>
             {children &&
               children.map((child) => (
-                <Link key={child.label} py={2} href={child.href}>
+                <Link key={child.label} py={2} href={child.href} onClick={onOpen}>
                   {child.label}
                 </Link>
               ))}
@@ -245,41 +267,7 @@ import {
   
   const NAV_ITEMS = [
     {
-      label: 'Nav1',
-      children: [
-        {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '#',
-        },
-        {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
-          href: '#',
-        },
-      ],
-    },
-    {
-      label: 'Nav2',
-      children: [
-        {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
-        },
-        {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
-        },
-      ],
-    },
-    {
-      label: 'Nav3',
-      href: '#',
-    },
-    {
-      label: 'Become member',
+      label: 'CSR',
       href: '#',
     },
   ];    
