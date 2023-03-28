@@ -83,22 +83,10 @@ import CSR from '../CSR/CSR';
             <Button
               as={'a'}
               fontSize={'sm'}
-              fontWeight={400}
+              fontWeight={600}
               variant={'link'}
               href={'#'}>
               Sign In
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'#54bfd7'}
-              href={'#'}
-              _hover={{
-                bg: '#346d7a',
-              }}>
-              Sign Up
             </Button>
           </Stack>
         </Flex>
@@ -111,7 +99,7 @@ import CSR from '../CSR/CSR';
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('black.600', 'black.600');
+    const linkColor = useColorModeValue('blue.600', 'blue.600');
     const linkHoverColor = useColorModeValue('black.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -138,13 +126,10 @@ import CSR from '../CSR/CSR';
                   p={2}
                   onClick={onOpen}
                   href={navItem.href ?? '#'}
-                  fontSize={'xl'}
-                  fontWeight={"bold"}
+                  fontSize={'18px'}
+                  fontWeight={"600"}
                   color={linkColor}
-                  _hover={{
-                    textDecoration: 'none',
-                    color: linkHoverColor,
-                  }}>
+                  >
                   {navItem.label}
                 </Link>
               

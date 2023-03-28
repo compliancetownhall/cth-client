@@ -53,7 +53,7 @@ const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h2" marginTop="5">
-        Latest articles
+        Some Write Ups
       </Heading>
       <Divider marginTop="5" />
       <Wrap spacing="30px" marginTop="5">
