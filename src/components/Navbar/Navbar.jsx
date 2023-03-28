@@ -69,9 +69,26 @@ import CSR from '../CSR/CSR';
               color={useColorModeValue('black.800', 'white')}>
               Compliance Townhall
             </Text>
-  
+            
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
+            </Flex>
+            <Flex pl={"35"} display={{ base: 'flex', md: 'none' }}>
+            <Link href='https://community.compliancetownhall.vercel.app/' isExternal>
+            <Button
+              as={'a'}
+              // display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={"#54bfd7"}
+              _hover={{
+                bg: '#024250',
+              }}
+              >
+              Sign In
+            </Button>
+            </Link>
             </Flex>
           </Flex>
   
@@ -80,14 +97,21 @@ import CSR from '../CSR/CSR';
             justify={'flex-end'}
             direction={'row'}
             spacing={6}>
+              <Link href='https://community.compliancetownhall.vercel.app/' isExternal>
             <Button
               as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              variant={'link'}
-              href={'#'}>
+              color={'white'}
+              bg={"#54bfd7"}
+              _hover={{
+                bg: '#024250',
+              }}
+              >
               Sign In
             </Button>
+            </Link>
           </Stack>
         </Flex>
   
