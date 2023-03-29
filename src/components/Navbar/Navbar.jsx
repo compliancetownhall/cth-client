@@ -31,6 +31,8 @@ import {
     ChevronRightIcon,
   } from '@chakra-ui/icons';
 import CSR from '../CSR/CSR';
+import { useState } from 'react';
+import InternalInvestigation from '../InternalInvestigation/InternalInvestigation';
   
   export default function Navbar() {
     const { isOpen, onToggle } = useDisclosure();
@@ -127,16 +129,26 @@ import CSR from '../CSR/CSR';
     const linkHoverColor = useColorModeValue('black.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [type,setType]=useState(0);
+    const openWindow = (type) => {
+      console.log(type);
+      if (type == "CSR") {
+        setType(1);
+      } else {
+        setType(2);
+      }
+      onOpen();
+    }
     return (
       <Stack direction={'row'} spacing={4}>
-        {NAV_ITEMS.map((navItem) => (
-          <Box key={navItem.label}>
-            <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'inside'}>
+        <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'inside'}>
             <ModalOverlay />
             <ModalContent maxW={'5xl'}>
               <ModalCloseButton />
               <ModalBody>
-                <CSR />
+              {
+                  type == 1 ? <CSR/> :<InternalInvestigation/>
+                }
               </ModalBody>
 
               <ModalFooter>
@@ -146,9 +158,12 @@ import CSR from '../CSR/CSR';
               </ModalFooter>
             </ModalContent>
           </Modal>
+        {NAV_ITEMS.map((navItem) => (
+          <Box key={navItem.label}>
+            
                 <Link
                   p={2}
-                  onClick={onOpen}
+                  onClick={()=>openWindow(navItem.label)}
                   href={navItem.href ?? '#'}
                   fontSize={'18px'}
                   fontWeight={"600"}
@@ -212,7 +227,14 @@ import CSR from '../CSR/CSR';
   
   const MobileNavItem = ({ label, children, href }) => {
     const { isOpen, onOpen, onToggle, onClose } = useDisclosure();
-  
+    const [type,setType]=useState(0);
+    const openWindow = (type) => {
+      if (type == "CSR") {
+        setType(1);
+      } else {
+        setType(2);
+      }
+    }
     return (
       <Stack spacing={4} onClick={children && onToggle}>
         <Flex
@@ -244,7 +266,9 @@ import CSR from '../CSR/CSR';
             <ModalContent maxW={'5xl'}>
               <ModalCloseButton />
               <ModalBody>
-                <CSR />
+                {
+                  type == 1 ? <CSR/> :<InternalInvestigation/>
+                }
               </ModalBody>
 
               <ModalFooter>
@@ -264,7 +288,7 @@ import CSR from '../CSR/CSR';
             align={'start'}>
             {children &&
               children.map((child) => (
-                <Link key={child.label} py={2} href={child.href} onClick={onOpen}>
+                <Link key={child.label} py={2} href={child.href} onClick={()=>openWindow(child.label)}>
                   {child.label}
                 </Link>
               ))}
@@ -278,6 +302,10 @@ import CSR from '../CSR/CSR';
   const NAV_ITEMS = [
     {
       label: 'CSR',
+      href: '#',
+    },
+    {
+      label: 'INTERNAL INVESTIGATIONS',
       href: '#',
     },
   ];    
