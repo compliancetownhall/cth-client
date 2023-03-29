@@ -305,7 +305,7 @@ import InternalInvestigation from '../InternalInvestigation/InternalInvestigatio
       href: '#',
     },
     {
-      label: 'INTERNAL INVESTIGATIONS',
+      label: 'Internal Investigations',
       href: '#',
     },
   ];    

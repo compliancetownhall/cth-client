@@ -85,10 +85,7 @@ const ArticleList = () => {
             <Text as="p" fontSize="md" marginTop="2">
             TRANSPARENCY TOOL TO CURB CORRUPTION
             </Text>
-            <BlogAuthor
-              name="SUDIP KAR - Chief Manager (Vigilance)"
-              date={new Date('2023-01-01T19:01:27Z')}
-            />
+            Coming Soon ...
           </Box>
         </WrapItem>
       </Wrap>
